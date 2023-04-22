@@ -1,20 +1,22 @@
 %global octpkg database
 
 Summary:	Interface to SQL databases, currently only postgresql using libpq
-Name:		octave-%{octpkg}
+Name:		octave-database
 Version:	2.4.4
-Release:	1
-Source0:	https://downloads.sourceforge.net/octave/%{octpkg}-%{version}.tar.gz
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://gnu-octave.github.io/packages/%{octpkg}/
+Url:		https://packages.octave.org/database/
+Source0:	https://downloads.sourceforge.net/octave/database-%{version}.tar.gz
+# (upstream) https://savannah.gnu.org/bugs/index.php?61567
+Patch0:		octave-database-2.4.4-port-to-octave8.patch
 
-BuildRequires:	octave-devel >= 4.0.0
-BuildRequires:	octave-struct
-BuildRequires:	pkgconfig(libpq)
+BuildRequires:  octave-devel >= 4.0.0
+BuildRequires:  octave-struct >= 1.0.12
+BuildRequires:  pkgconfig(libpq)
 
 Requires:	octave(api) = %{octave_api}
-Requires:	octave-struct >= 1.0.12
+Requires:  	octave-struct >= 1.0.12
 
 Requires(post): octave
 Requires(postun): octave
@@ -25,19 +27,15 @@ Interface to SQL databases, currently only postgresql using libpq.
 %files
 %license COPYING
 %doc NEWS
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
 %dir %{octpkgdir}
 %{octpkgdir}/*
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
 %{_metainfodir}/*.metainfo.xml
-
 #---------------------------------------------------------------------------
 
 %prep
 %autosetup -p1 -n %{octpkg}-%{version}
-
-# remove backup files
-#find . -name \*~ -delete
 
 %build
 %set_build_flags
