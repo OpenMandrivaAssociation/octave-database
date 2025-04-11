@@ -3,7 +3,7 @@
 Summary:	Interface to SQL databases, currently only postgresql using libpq
 Name:		octave-database
 Version:	2.4.4
-Release:	2
+Release:	3
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/database/
